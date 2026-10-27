@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JobLens | Dashboard</title>
+  <meta name="description" content="See JobLens scam-report trends, risk levels, and summary counts for university career center staff.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+  <header id="site-header" class="site-header">
+    <nav class="navbar container flex-between" aria-label="Main navigation">
+      <a class="brand" href="index.html">
+        <span class="brand-mark" aria-hidden="true">🛡️</span>
+        <span class="brand-name">JobLens</span>
+        <span class="brand-tagline">Scam Shield</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">☰</button>
+      <ul class="nav-links" id="nav-links">
+        <li><a class="nav-link" href="index.html">Home</a></li>
+        <li><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+        <li><a class="nav-link" href="crud.html">Scam Reports</a></li>
+        <li><a class="nav-link" href="bot.html">Ask Sentinel</a></li>
+        <li><a class="nav-link" href="aboutus.html">About Us</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main class="container">
+    <section class="page-header">
+      <h1>Scam Insights Dashboard</h1>
+      <p class="lead text-muted">Trends in job and internship scams reported by students.</p>
+    </section>
+  </main>
+  <footer id="site-footer" class="site-footer">
+    <div class="container">
+      <div class="footer-row">
+        <p class="footer-brand">🛡️ JobLens — We verify the recruiter, not just the job.</p>
+        <nav class="footer-nav" aria-label="Footer">
+          <a href="index.html">Home</a>
+          <a href="dashboard.html">Dashboard</a>
+          <a href="crud.html">Scam Reports</a>
+          <a href="bot.html">Ask Sentinel</a>
+          <a href="aboutus.html">About Us</a>
+        </nav>
+        <p class="footer-course">ISM 6225 · Application Development for Analytics · [Team Name] · <span id="year"></span></p>
+      </div>
+      <p class="footer-disclaimer">Prototype for educational purposes. Scam data shown is sample data.</p>
+    </div>
+  </footer>
+  <script src="js/main.js" defer></script>
+  <script src="js/dashboard.js" defer></script>
+</body>
+</html>

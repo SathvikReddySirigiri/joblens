@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JobLens | Scam Reports</title>
+  <meta name="description" content="Review, add, and update student reports of suspicious job and internship offers in JobLens.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+  <header id="site-header" class="site-header">
+    <nav class="navbar container flex-between" aria-label="Main navigation">
+      <a class="brand" href="index.html">
+        <span class="brand-mark" aria-hidden="true">🛡️</span>
+        <span class="brand-name">JobLens</span>
+        <span class="brand-tagline">Scam Shield</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">☰</button>
+      <ul class="nav-links" id="nav-links">
+        <li><a class="nav-link" href="index.html">Home</a></li>
+        <li><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+        <li><a class="nav-link" href="crud.html">Scam Reports</a></li>
+        <li><a class="nav-link" href="bot.html">Ask Sentinel</a></li>
+        <li><a class="nav-link" href="aboutus.html">About Us</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main class="container">
+    <section class="page-header">
+      <h1>Scam Reports</h1>
+      <p class="lead text-muted">Submit, review and manage reported recruiter scams.</p>
+    </section>
+
+    <div class="crud-summary grid grid-4">
+      <article class="kpi">
+        <p class="kpi-value" id="kpi-total">10</p>
+        <p class="kpi-label">Total reports</p>
+      </article>
+      <article class="kpi">
+        <p class="kpi-value" id="kpi-pending">3</p>
+        <p class="kpi-label">Pending review</p>
+      </article>
+      <article class="kpi">
+        <p class="kpi-value" id="kpi-approved">5</p>
+        <p class="kpi-label">Approved</p>
+      </article>
+      <article class="kpi">
+        <p class="kpi-value" id="kpi-rejected">2</p>
+        <p class="kpi-label">Rejected</p>
+      </article>
+    </div>
+
+    <div id="crud-message" role="status" aria-live="polite"></div>
+
+    <div class="crud-layout">
+      <form id="report-form" class="card crud-form" novalidate>
+        <h2 id="form-title">Submit a Scam Report</h2>
+
+        <div class="form-group">
+          <label for="report-email">Recruiter email</label>
+          <input id="report-email" name="email" type="email" required autocomplete="off" placeholder="e.g. hr@amaz0n-careers.net">
+          <p class="form-help">We'll extract the domain automatically.</p>
+          <p class="domain-preview" id="domain-preview">Domain: —</p>
+          <p class="form-error" id="email-error" hidden></p>
+        </div>
+
+        <div class="form-group">
+          <label for="report-company">Company impersonated</label>
+          <select id="report-company" name="company" required>
+            <option value="">Select a company</option>
+            <option>Amazon</option>
+            <option>Microsoft</option>
+            <option>Google</option>
+            <option>Deloitte</option>
+            <option>JPMorgan Chase</option>
+            <option>Raymond James</option>
+            <option>Moffitt Cancer Center</option>
+            <option>Publix</option>
+            <option>Other</option>
+          </select>
+          <p class="form-error" id="company-error" hidden></p>
+        </div>
+
+        <div class="form-group">
+          <label for="report-type">Scam type</label>
+          <select id="report-type" name="scamType" required>
+            <option value="">Select a scam type</option>
+            <option>Fake check</option>
+            <option>Equipment purchase</option>
+            <option>Upfront fee</option>
+            <option>Chat-only interview</option>
+            <option>Identity theft</option>
+            <option>Fake staffing agency</option>
+          </select>
+          <p class="form-error" id="type-error" hidden></p>
+        </div>
+
+        <div class="form-group">
+          <label for="report-description">Description</label>
+          <textarea id="report-description" name="description" required placeholder="What did the recruiter ask you to do?"></textarea>
+          <p class="char-counter" id="char-counter">0 / 500</p>
+          <p class="form-help">At least 20 characters.</p>
+          <p class="form-error" id="description-error" hidden></p>
+        </div>
+
+        <fieldset class="form-group">
+          <legend>Reported by</legend>
+          <div class="radio-row">
+            <label for="reported-student"><input id="reported-student" type="radio" name="reportedBy" value="Student" checked> Student</label>
+            <label for="reported-center"><input id="reported-center" type="radio" name="reportedBy" value="Career Center"> Career Center</label>
+          </div>
+        </fieldset>
+
+        <div class="form-group" id="status-group" hidden>
+          <label for="report-status">Status</label>
+          <select id="report-status" name="status">
+            <option>Pending</option>
+            <option>Approved</option>
+            <option>Rejected</option>
+          </select>
+          <p class="form-help">New reports always start as Pending. Change status here while editing.</p>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn btn-primary" id="form-submit" type="submit">Submit Report</button>
+          <button class="btn btn-secondary" id="form-clear" type="button">Clear</button>
+          <button class="btn btn-secondary" id="form-cancel" type="button" hidden>Cancel Edit</button>
+        </div>
+      </form>
+
+      <section class="card" aria-labelledby="table-title">
+        <h2 class="sr-only" id="table-title">Submitted reports</h2>
+        <div class="toolbar">
+          <div class="toolbar-search">
+            <label class="sr-only" for="report-search">Search reports</label>
+            <input id="report-search" type="search" placeholder="Search email, domain, company, or description">
+          </div>
+          <div>
+            <label class="sr-only" for="filter-status">Filter by status</label>
+            <select id="filter-status">
+              <option value="All">All statuses</option>
+              <option>Pending</option>
+              <option>Approved</option>
+              <option>Rejected</option>
+            </select>
+          </div>
+          <div>
+            <label class="sr-only" for="filter-type">Filter by scam type</label>
+            <select id="filter-type">
+              <option value="All">All scam types</option>
+              <option>Fake check</option>
+              <option>Equipment purchase</option>
+              <option>Upfront fee</option>
+              <option>Chat-only interview</option>
+              <option>Identity theft</option>
+              <option>Fake staffing agency</option>
+            </select>
+          </div>
+          <p class="small text-muted" id="report-count">Showing 10 of 10 reports</p>
+        </div>
+
+        <div class="table-wrap">
+          <table class="table" id="report-table">
+            <thead>
+              <tr>
+                <th class="sortable" scope="col"><button class="sort-btn" type="button" data-sort="id">ID <span data-mark="id"></span></button></th>
+                <th scope="col">Recruiter email</th>
+                <th class="sortable" scope="col"><button class="sort-btn" type="button" data-sort="company">Company <span data-mark="company"></span></button></th>
+                <th scope="col">Scam type</th>
+                <th class="sortable" scope="col"><button class="sort-btn" type="button" data-sort="date">Date <span data-mark="date"> ▼</span></button></th>
+                <th scope="col">Status</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="report-rows"></tbody>
+          </table>
+        </div>
+        <p class="scroll-hint">Scroll →</p>
+      </section>
+    </div>
+
+    <p class="reset-row">
+      <button class="btn btn-secondary btn-sm" id="reset-data" type="button">Reset sample data</button>
+    </p>
+  </main>
+
+  <div class="modal-backdrop" id="modal-backdrop"></div>
+
+  <div class="modal modal-wide" id="view-modal" role="dialog" aria-modal="true" aria-labelledby="view-title">
+    <div class="modal-header">
+      <h2 class="modal-title" id="view-title">Report details</h2>
+      <button class="modal-close" type="button" data-close aria-label="Close">✕</button>
+    </div>
+    <dl class="detail-list" id="view-details"></dl>
+    <div class="modal-actions">
+      <button class="btn btn-secondary" type="button" data-close data-autofocus>Close</button>
+    </div>
+  </div>
+
+  <div class="modal" id="delete-modal" role="dialog" aria-modal="true" aria-labelledby="delete-title">
+    <div class="modal-header">
+      <h2 class="modal-title" id="delete-title">Delete report</h2>
+      <button class="modal-close" type="button" data-close aria-label="Close">✕</button>
+    </div>
+    <p id="delete-text"></p>
+    <div class="modal-actions">
+      <button class="btn btn-secondary" type="button" data-close data-autofocus>Cancel</button>
+      <button class="btn btn-danger" id="confirm-delete" type="button">Delete</button>
+    </div>
+  </div>
+
+  <div class="modal" id="reset-modal" role="dialog" aria-modal="true" aria-labelledby="reset-title">
+    <div class="modal-header">
+      <h2 class="modal-title" id="reset-title">Reset sample data</h2>
+      <button class="modal-close" type="button" data-close aria-label="Close">✕</button>
+    </div>
+    <p>Replace every report with the original 10 sample reports? This cannot be undone.</p>
+    <div class="modal-actions">
+      <button class="btn btn-secondary" type="button" data-close data-autofocus>Cancel</button>
+      <button class="btn btn-danger" id="confirm-reset" type="button">Reset sample data</button>
+    </div>
+  </div>
+  <footer id="site-footer" class="site-footer">
+    <div class="container">
+      <div class="footer-row">
+        <p class="footer-brand">🛡️ JobLens — We verify the recruiter, not just the job.</p>
+        <nav class="footer-nav" aria-label="Footer">
+          <a href="index.html">Home</a>
+          <a href="dashboard.html">Dashboard</a>
+          <a href="crud.html">Scam Reports</a>
+          <a href="bot.html">Ask Sentinel</a>
+          <a href="aboutus.html">About Us</a>
+        </nav>
+        <p class="footer-course">ISM 6225 · Application Development for Analytics · [Team Name] · <span id="year"></span></p>
+      </div>
+      <p class="footer-disclaimer">Prototype for educational purposes. Scam data shown is sample data.</p>
+    </div>
+  </footer>
+  <script src="js/main.js" defer></script>
+  <script src="js/crud.js" defer></script>
+</body>
+</html>

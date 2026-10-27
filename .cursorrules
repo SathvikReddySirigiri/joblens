@@ -1,0 +1,33 @@
+# JobLens UI theme
+
+Simple, light interface. Use these tokens for every screen, component, and chart. Do not introduce other brand colors.
+
+## Color
+
+| Use | Color | Hex |
+| --- | --- | --- |
+| Page background | Very light grey | `#F8FAFC` |
+| Cards / surfaces | White | `#FFFFFF` |
+| Borders | Soft grey | `#E2E8F0` |
+| Main text | Dark slate | `#1E293B` |
+| Secondary text | Muted grey | `#64748B` |
+| Primary (buttons, links) | Soft blue | `#3B82F6` |
+| Primary light (highlights, navbar active) | Pale blue | `#DBEAFE` |
+| Safe / Low risk | Green on pale green | `#16A34A` on `#DCFCE7` |
+| Caution / Medium risk | Amber on pale amber | `#D97706` on `#FEF3C7` |
+| Scam / High risk | Red on pale red | `#DC2626` on `#FEE2E2` |
+
+Chart colors (pastel), in order: `#93C5FD`, `#86EFAC`, `#FCD34D`, `#FCA5A5`, `#C4B5FD`.
+
+Risk badges always pair the text color with its pale background. Primary actions and links use `#3B82F6`. Active nav and highlights use `#DBEAFE`.
+
+## Type
+
+Load Inter from Google Fonts and use it for all UI text.
+
+## Style
+
+- Rounded corners on cards, buttons, inputs, and badges.
+- Soft shadows on cards and raised surfaces. Keep them light so the page stays airy.
+- Generous white space between sections, cards, and form fields.
+- Page background is `#F8FAFC`. Content sits on white cards with `#E2E8F0` borders.

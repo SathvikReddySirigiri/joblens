@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JobLens | Home</title>
+  <meta name="description" content="JobLens helps students check job and internship offers for scam risk. A trust-and-safety tool for university career centers.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+  <header id="site-header" class="site-header">
+    <nav class="navbar container flex-between" aria-label="Main navigation">
+      <a class="brand" href="index.html">
+        <span class="brand-mark" aria-hidden="true">🛡️</span>
+        <span class="brand-name">JobLens</span>
+        <span class="brand-tagline">Scam Shield</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">☰</button>
+      <ul class="nav-links" id="nav-links">
+        <li><a class="nav-link" href="index.html">Home</a></li>
+        <li><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+        <li><a class="nav-link" href="crud.html">Scam Reports</a></li>
+        <li><a class="nav-link" href="bot.html">Ask Sentinel</a></li>
+        <li><a class="nav-link" href="aboutus.html">About Us</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main class="home">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="pill">For students · Career centers · Employers</p>
+          <h1>We verify the recruiter, not just the job.</h1>
+          <p class="lead">Job and internship scams target students every day — fake recruiters, look-alike company emails, and offers that ask you to pay first. JobLens checks the recruiter before you reply.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#check">Try a Recruiter Check</a>
+            <a class="btn btn-secondary" href="dashboard.html">View Scam Dashboard</a>
+          </div>
+        </div>
+        <article class="card example-card">
+          <h2 class="example-title">Example check</h2>
+          <p class="text-muted example-meta">hr@amaz0n-careers.net · Amazon</p>
+          <div class="example-scoreline">
+            <span class="badge badge-high badge-lg">HIGH RISK</span>
+            <p class="example-score">92 / 100</p>
+          </div>
+          <ul class="reason-list">
+            <li><span class="reason-icon bad" aria-hidden="true">✕</span><span>Look-alike of amazon.com</span></li>
+            <li><span class="reason-icon bad" aria-hidden="true">✕</span><span>Domain registered 9 days ago</span></li>
+            <li><span class="reason-icon bad" aria-hidden="true">✕</span><span>4 student scam reports</span></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-heading">
+          <h2 class="section-title">Why JobLens?</h2>
+        </div>
+        <div class="grid grid-3">
+          <article class="card">
+            <p class="card-emoji" aria-hidden="true">🎭</p>
+            <h3>Fake recruiters</h3>
+            <p>Scammers copy real company names and use look-alike emails like amaz0n-careers.net to contact students.</p>
+          </article>
+          <article class="card">
+            <p class="card-emoji" aria-hidden="true">📄</p>
+            <h3>Confusing offers</h3>
+            <p>Real and fake offers hide risky terms: pay-first equipment, check deposits, unpaid trials, and clawbacks.</p>
+          </article>
+          <article class="card">
+            <p class="card-emoji" aria-hidden="true">🧩</p>
+            <h3>No central record</h3>
+            <p>Warnings are scattered across group chats and emails. Nobody connects the reports.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-heading">
+          <h2 class="section-title">How it works</h2>
+        </div>
+        <ol class="grid grid-3 step-list">
+          <li class="card">
+            <span class="step-number" aria-hidden="true">1</span>
+            <h3>Enter the recruiter</h3>
+            <p>Paste the recruiter's email and the company they claim to represent.</p>
+          </li>
+          <li class="card">
+            <span class="step-number" aria-hidden="true">2</span>
+            <h3>JobLens checks it</h3>
+            <p>We compare the domain to the real company, check for look-alikes, and search community scam reports.</p>
+          </li>
+          <li class="card">
+            <span class="step-number" aria-hidden="true">3</span>
+            <h3>Get a clear verdict</h3>
+            <p>See a risk score, a Low / Medium / High badge, and the exact reasons.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="check">
+      <div class="container">
+        <div class="section-heading">
+          <h2 class="section-title">Check a Recruiter</h2>
+          <p class="section-subtitle">Try the prototype — sample data only.</p>
+        </div>
+        <div class="check-wrap">
+          <form id="recruiter-form" class="card check-form" novalidate>
+            <div class="form-group">
+              <label for="recruiter-email">Recruiter email</label>
+              <input id="recruiter-email" name="email" type="email" required placeholder="e.g. hr@amaz0n-careers.net" autocomplete="off">
+              <p id="recruiter-error" class="form-error" hidden></p>
+            </div>
+            <div class="form-group">
+              <label for="company">Company they claim to represent</label>
+              <select id="company" name="company" required>
+                <option value="">Select a company</option>
+                <option>Amazon</option>
+                <option>Microsoft</option>
+                <option>Google</option>
+                <option>Deloitte</option>
+                <option>JPMorgan Chase</option>
+                <option>Raymond James</option>
+                <option>Moffitt Cancer Center</option>
+                <option>Publix</option>
+                <option>Other / Not listed</option>
+              </select>
+              <p id="company-error" class="form-error" hidden></p>
+            </div>
+            <button class="btn btn-primary" type="submit">Check Recruiter</button>
+            <div class="try-these">
+              <p class="small text-muted">Try these:</p>
+              <div class="chip-row">
+                <button class="chip" type="button" data-email="hr@amaz0n-careers.net" data-company="Amazon">hr@amaz0n-careers.net · Amazon</button>
+                <button class="chip" type="button" data-email="jane.doe@microsoft.com" data-company="Microsoft">jane.doe@microsoft.com · Microsoft</button>
+                <button class="chip" type="button" data-email="recruiting.team2026@gmail.com" data-company="Deloitte">recruiting.team2026@gmail.com · Deloitte</button>
+                <button class="chip" type="button" data-email="talent@rnicrosoft-hiring.com" data-company="Microsoft">talent@rnicrosoft-hiring.com · Microsoft</button>
+              </div>
+            </div>
+          </form>
+          <div id="check-result" aria-live="polite" hidden></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-heading">
+          <h2 class="section-title">Built for everyone in the hiring process</h2>
+        </div>
+        <div class="grid grid-3">
+          <article class="card">
+            <p class="card-emoji" aria-hidden="true">🎓</p>
+            <h3>Students</h3>
+            <p>Check recruiters and offers before replying. Report scams to protect classmates.</p>
+          </article>
+          <article class="card">
+            <p class="card-emoji" aria-hidden="true">🏫</p>
+            <h3>Career centers</h3>
+            <p>Moderate reports, verify employers, and see campus-wide scam trends.</p>
+          </article>
+          <article class="card">
+            <p class="card-emoji" aria-hidden="true">🏢</p>
+            <h3>Employers</h3>
+            <p>Protect your brand from impersonation and confirm your real recruiters.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="grid grid-4">
+          <article class="kpi">
+            <p class="kpi-value">128</p>
+            <p class="kpi-label">Scams reported</p>
+          </article>
+          <article class="kpi">
+            <p class="kpi-value">23</p>
+            <p class="kpi-label">Companies impersonated</p>
+          </article>
+          <article class="kpi">
+            <p class="kpi-value">1,540</p>
+            <p class="kpi-label">Recruiter checks run</p>
+          </article>
+          <article class="kpi">
+            <p class="kpi-value">92%</p>
+            <p class="kpi-label">Look-alike domains caught</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="cta-band">
+          <h2>Got a suspicious recruiter message?</h2>
+          <div class="cta-actions">
+            <a class="btn btn-primary" href="crud.html">Report a Scam</a>
+            <a class="btn btn-secondary" href="bot.html">Ask Sentinel</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer id="site-footer" class="site-footer">
+    <div class="container">
+      <div class="footer-row">
+        <p class="footer-brand">🛡️ JobLens — We verify the recruiter, not just the job.</p>
+        <nav class="footer-nav" aria-label="Footer">
+          <a href="index.html">Home</a>
+          <a href="dashboard.html">Dashboard</a>
+          <a href="crud.html">Scam Reports</a>
+          <a href="bot.html">Ask Sentinel</a>
+          <a href="aboutus.html">About Us</a>
+        </nav>
+        <p class="footer-course">ISM 6225 · Application Development for Analytics · [Team Name] · <span id="year"></span></p>
+      </div>
+      <p class="footer-disclaimer">Prototype for educational purposes. Scam data shown is sample data.</p>
+    </div>
+  </footer>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
