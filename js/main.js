@@ -5,9 +5,12 @@ document.addEventListener("DOMContentLoaded", function () {
   setupMobileMenu();
   setFooterYear();
   setupRecruiterCheck();
+  setupAvatarFallback();
+  setupSentinelChat();
 });
 
 // Mark the link for this page. "" or a trailing slash means the home page.
+// bot.html is not in the top navbar, so that page has no highlighted link.
 function setActiveNavLink() {
   var path = window.location.pathname || "";
   var file = path.slice(path.lastIndexOf("/") + 1).toLowerCase();
@@ -475,5 +478,111 @@ function setupRecruiterCheck() {
       companySelect.value = chip.getAttribute("data-company") || "";
       runCheck();
     });
+  });
+}
+
+// =============================================================================
+// About page
+// =============================================================================
+
+function setupSentinelChat() {
+  var hintText = "Click the chat bubble in the bottom-right corner to start.";
+  var copiedText = "Copied! Paste it into the chat.";
+
+  function showHint(button) {
+    var scope = button.closest("section, aside, .sentinel-home") || document;
+    var hint = scope.querySelector(".chat-hint");
+    if (!hint) {
+      hint = document.querySelector(".chat-hint");
+    }
+    if (!hint) {
+      return;
+    }
+    hint.textContent = hintText;
+    hint.hidden = false;
+  }
+
+  document.querySelectorAll(".open-chat").forEach(function (button) {
+    button.addEventListener("click", function () {
+      try {
+        if (window.botpress && typeof window.botpress.open === "function") {
+          window.botpress.open();
+          return;
+        }
+        showHint(button);
+      } catch (error) {
+        showHint(button);
+      }
+    });
+  });
+
+  document.querySelectorAll(".sentinel-chip").forEach(function (chip) {
+    chip.addEventListener("click", function () {
+      var text = chip.getAttribute("data-question") || chip.textContent;
+      var scope = chip.closest(".sentinel-questions");
+      var note = scope ? scope.parentElement.querySelector(".sentinel-copy") : null;
+
+      function showCopied() {
+        if (!note) {
+          return;
+        }
+        note.textContent = copiedText;
+        note.hidden = false;
+      }
+
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(showCopied).catch(function () {
+            if (copyWithFallback(text)) {
+              showCopied();
+            }
+          });
+          return;
+        }
+        if (copyWithFallback(text)) {
+          showCopied();
+        }
+      } catch (error) {
+        if (copyWithFallback(text)) {
+          showCopied();
+        }
+      }
+    });
+  });
+}
+
+function copyWithFallback(text) {
+  var area = document.createElement("textarea");
+  area.value = text;
+  area.className = "copy-sink";
+  area.setAttribute("readonly", "");
+  document.body.appendChild(area);
+  area.select();
+  var copied = false;
+  try {
+    copied = document.execCommand("copy");
+  } catch (error) {
+    copied = false;
+  }
+  document.body.removeChild(area);
+  return copied;
+}
+
+function setupAvatarFallback() {
+  document.querySelectorAll("img.avatar-img").forEach(function (img) {
+    function showFallback() {
+      var fallback = img.nextElementSibling;
+      img.classList.add("is-hidden");
+      if (!fallback || !fallback.classList.contains("avatar-fallback")) {
+        return;
+      }
+      fallback.textContent = img.getAttribute("data-initials") || "";
+      fallback.classList.add("is-visible");
+    }
+
+    img.addEventListener("error", showFallback);
+    if (img.complete && img.naturalWidth === 0) {
+      showFallback();
+    }
   });
 }

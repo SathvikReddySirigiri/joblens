@@ -9,6 +9,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/site.css">
+  <!-- ===================== BOTPRESS EMBED (Sentinel) ===================== -->
+  <script src="https://cdn.botpress.cloud/webchat/v5.0/inject.js"></script>
+  <script src="https://files.bpcontent.cloud/2026/10/27/17/20261027173845-1T2RG80U.js" defer></script>
+  <!-- ===================== END BOTPRESS EMBED ============================ -->
 </head>
 <body>
   <header id="site-header" class="site-header">
@@ -23,7 +27,6 @@
         <li><a class="nav-link" href="index.html">Home</a></li>
         <li><a class="nav-link" href="dashboard.html">Dashboard</a></li>
         <li><a class="nav-link" href="crud.html">Scam Reports</a></li>
-        <li><a class="nav-link" href="bot.html">Ask Sentinel</a></li>
         <li><a class="nav-link" href="aboutus.html">About Us</a></li>
       </ul>
     </nav>
@@ -32,6 +35,93 @@
     <section class="page-header">
       <h1>Scam Insights Dashboard</h1>
       <p class="lead text-muted">Trends in job and internship scams reported by students.</p>
+    </section>
+
+    <section class="dash-toolbar flex-between" aria-label="Dashboard controls">
+      <div class="dash-toolbar-meta">
+        <p class="dash-updated" id="last-updated">Last updated: —</p>
+        <p class="pill dash-pill">Includes your Scam Reports data</p>
+      </div>
+      <div class="dash-toolbar-actions">
+        <label class="dash-range-label" for="range">Time range</label>
+        <select id="range">
+          <option value="3">Last 3 months</option>
+          <option value="6">Last 6 months</option>
+          <option value="all" selected>All (Jan–Oct)</option>
+        </select>
+        <button class="btn btn-secondary" id="refresh-data" type="button">Refresh data</button>
+      </div>
+    </section>
+
+    <section class="grid grid-4 dash-kpis" aria-label="Summary">
+      <article class="kpi">
+        <p class="kpi-icon" aria-hidden="true">📋</p>
+        <p class="kpi-value" id="kpi-total">0</p>
+        <p class="kpi-label">Total reports</p>
+        <p class="kpi-trend" id="kpi-total-trend">+0 this month</p>
+      </article>
+      <article class="kpi">
+        <p class="kpi-icon" aria-hidden="true">⏳</p>
+        <p class="kpi-value" id="kpi-pending">0</p>
+        <p class="kpi-label">Pending review</p>
+        <p class="kpi-trend">needs moderator action</p>
+      </article>
+      <article class="kpi">
+        <p class="kpi-icon" aria-hidden="true">✅</p>
+        <p class="kpi-value" id="kpi-rate">0%</p>
+        <p class="kpi-label">Approval rate</p>
+        <p class="kpi-trend">of reviewed reports</p>
+      </article>
+      <article class="kpi">
+        <p class="kpi-icon" aria-hidden="true">🎭</p>
+        <p class="kpi-value kpi-type" id="kpi-type">—</p>
+        <p class="kpi-label">Top scam type</p>
+        <p class="kpi-trend" id="kpi-type-trend">0 reports</p>
+      </article>
+    </section>
+
+    <section class="grid grid-2 dash-charts" id="chart-grid">
+      <article class="card chart-card">
+        <h3>Scam reports per month</h3>
+        <p class="chart-desc">How many scam reports were filed each month.</p>
+        <div class="chart-box">
+          <canvas id="chart-reports" role="img" aria-label="Line chart of scam reports per month from January to October 2026."></canvas>
+        </div>
+      </article>
+      <article class="card chart-card">
+        <h3>Reports by scam type</h3>
+        <p class="chart-desc">Share of live reports by scam type.</p>
+        <div class="chart-box">
+          <canvas id="chart-types" role="img" aria-label="Doughnut chart of live scam reports by scam type."></canvas>
+        </div>
+      </article>
+      <article class="card chart-card">
+        <h3>Most-impersonated companies</h3>
+        <p class="chart-desc">Companies named most often in sample reports.</p>
+        <div class="chart-box">
+          <canvas id="chart-companies" role="img" aria-label="Horizontal bar chart of the companies impersonated most often."></canvas>
+        </div>
+      </article>
+      <article class="card chart-card">
+        <h3>Recruiter checks by verdict</h3>
+        <p class="chart-desc">Low, medium, and high verdicts from recruiter checks.</p>
+        <div class="chart-box">
+          <canvas id="chart-checks" role="img" aria-label="Stacked bar chart of recruiter check verdicts by month."></canvas>
+        </div>
+      </article>
+      <article class="card chart-card full">
+        <h3>Report status (live)</h3>
+        <p class="chart-desc">Pending, approved, and rejected reports right now.</p>
+        <div class="chart-box">
+          <canvas id="chart-status" role="img" aria-label="Bar chart of live reports by status: pending, approved, and rejected."></canvas>
+        </div>
+      </article>
+    </section>
+
+    <section class="card insights">
+      <h3>Key insights</h3>
+      <ul class="insights-list" id="insights-list"></ul>
+      <p class="insights-note">Charts combine sample historical data with reports submitted on the Scam Reports page.</p>
     </section>
   </main>
   <footer id="site-footer" class="site-footer">
@@ -45,12 +135,13 @@
           <a href="bot.html">Ask Sentinel</a>
           <a href="aboutus.html">About Us</a>
         </nav>
-        <p class="footer-course">ISM 6225 · Application Development for Analytics · [Team Name] · <span id="year"></span></p>
+        <p class="footer-course">ISM 6225 · App Dev for Analytics · <span id="year"></span></p>
       </div>
       <p class="footer-disclaimer">Prototype for educational purposes. Scam data shown is sample data.</p>
     </div>
   </footer>
   <script src="js/main.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
   <script src="js/dashboard.js" defer></script>
 </body>
 </html>

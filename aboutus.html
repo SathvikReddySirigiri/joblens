@@ -9,6 +9,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/site.css">
+  <!-- ===================== BOTPRESS EMBED (Sentinel) ===================== -->
+  <script src="https://cdn.botpress.cloud/webchat/v5.0/inject.js"></script>
+  <script src="https://files.bpcontent.cloud/2026/10/27/17/20261027173845-1T2RG80U.js" defer></script>
+  <!-- ===================== END BOTPRESS EMBED ============================ -->
 </head>
 <body>
   <header id="site-header" class="site-header">
@@ -23,7 +27,6 @@
         <li><a class="nav-link" href="index.html">Home</a></li>
         <li><a class="nav-link" href="dashboard.html">Dashboard</a></li>
         <li><a class="nav-link" href="crud.html">Scam Reports</a></li>
-        <li><a class="nav-link" href="bot.html">Ask Sentinel</a></li>
         <li><a class="nav-link" href="aboutus.html">About Us</a></li>
       </ul>
     </nav>
@@ -32,6 +35,78 @@
     <section class="page-header">
       <h1>About Us</h1>
       <p class="lead text-muted">The team behind JobLens.</p>
+    </section>
+
+    <section class="mission-card">
+      <p class="mission-pill">Our mission</p>
+      <h2>Making the job search safer for every student.</h2>
+      <p>JobLens helps students spot fake recruiters and risky job offers before they reply. We combine domain checks, community scam reports, and an AI assistant so career centers can protect students and employers can protect their brand.</p>
+      <ul class="value-points">
+        <li>🛡️ Verify before you reply</li>
+        <li>🤝 Community-powered reports</li>
+        <li>📊 Data-driven insights</li>
+      </ul>
+    </section>
+
+    <section class="team-section" aria-labelledby="team-title">
+      <div class="section-heading">
+        <h2 class="section-title" id="team-title">Meet the team</h2>
+        <p class="section-subtitle">ISM 6225 · App Dev for Analytics</p>
+      </div>
+      <div class="grid grid-3 team-grid">
+        <article class="card team-card">
+          <div class="avatar">
+            <img class="avatar-img" src="images/member1.jpg" alt="Photo of Naga Pavan Sathvik Reddy Sirigiri" data-initials="NS" width="96" height="96">
+            <div class="avatar-fallback" aria-hidden="true">NS</div>
+          </div>
+          <h3>Naga Pavan Sathvik Reddy Sirigiri</h3>
+          <p class="role-pill">Project Lead &amp; Developer</p>
+          <p class="contrib-label">Contributions</p>
+          <ul class="contrib-list">
+            <li>Set up the GitHub repo, project structure, and GitHub Pages deployment</li>
+            <li>Built the light design system, shared navbar, and footer</li>
+            <li>Built the home page and the "Check a Recruiter" demo logic</li>
+          </ul>
+        </article>
+        <article class="card team-card">
+          <div class="avatar">
+            <img class="avatar-img" src="images/member2.jpg" alt="Photo of Isabella Cuello Penaloza" data-initials="IC" width="96" height="96">
+            <div class="avatar-fallback" aria-hidden="true">IC</div>
+          </div>
+          <h3>Isabella Cuello Penaloza</h3>
+          <p class="role-pill">CRUD &amp; Data Developer</p>
+          <p class="contrib-label">Contributions</p>
+          <ul class="contrib-list">
+            <li>Built the Scam Reports CRUD page (create, read, update, delete)</li>
+            <li>Added validation rules, duplicate checks, and saved data</li>
+            <li>Created the sample scam report dataset</li>
+          </ul>
+        </article>
+        <article class="card team-card">
+          <div class="avatar">
+            <img class="avatar-img" src="images/member3.jpg" alt="Photo of Lakshmi Reethika Guduri" data-initials="LG" width="96" height="96">
+            <div class="avatar-fallback" aria-hidden="true">LG</div>
+          </div>
+          <h3>Lakshmi Reethika Guduri</h3>
+          <p class="role-pill">Dashboard &amp; Chatbot Developer</p>
+          <p class="contrib-label">Contributions</p>
+          <ul class="contrib-list">
+            <li>Built the Chart.js dashboard with interactive charts and KPIs</li>
+            <li>Created the "Ask Sentinel" Botpress bot, table, and knowledge base</li>
+            <li>Built the bot page and tested the bot's answers</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="about-cta">
+      <div class="cta-band">
+        <h2>Questions about JobLens?</h2>
+        <div class="cta-actions">
+          <a class="btn btn-primary" href="bot.html">Ask Sentinel</a>
+          <a class="btn btn-secondary" href="crud.html">Report a Scam</a>
+        </div>
+      </div>
     </section>
   </main>
   <footer id="site-footer" class="site-footer">
@@ -45,7 +120,7 @@
           <a href="bot.html">Ask Sentinel</a>
           <a href="aboutus.html">About Us</a>
         </nav>
-        <p class="footer-course">ISM 6225 · Application Development for Analytics · [Team Name] · <span id="year"></span></p>
+        <p class="footer-course">ISM 6225 · App Dev for Analytics · <span id="year"></span></p>
       </div>
       <p class="footer-disclaimer">Prototype for educational purposes. Scam data shown is sample data.</p>
     </div>

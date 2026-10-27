@@ -9,6 +9,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/site.css">
+  <!-- ===================== BOTPRESS EMBED (Sentinel) ===================== -->
+  <script src="https://cdn.botpress.cloud/webchat/v5.0/inject.js"></script>
+  <script src="https://files.bpcontent.cloud/2026/10/27/17/20261027173845-1T2RG80U.js" defer></script>
+  <!-- ===================== END BOTPRESS EMBED ============================ -->
 </head>
 <body>
   <header id="site-header" class="site-header">
@@ -23,7 +27,6 @@
         <li><a class="nav-link" href="index.html">Home</a></li>
         <li><a class="nav-link" href="dashboard.html">Dashboard</a></li>
         <li><a class="nav-link" href="crud.html">Scam Reports</a></li>
-        <li><a class="nav-link" href="bot.html">Ask Sentinel</a></li>
         <li><a class="nav-link" href="aboutus.html">About Us</a></li>
       </ul>
     </nav>
@@ -33,6 +36,42 @@
       <h1>Ask Sentinel</h1>
       <p class="lead text-muted">Our AI assistant that helps you recognize job scams.</p>
     </section>
+    <div class="grid grid-2 sentinel-layout">
+      <div class="sentinel-details">
+        <section class="card">
+          <h2>What Sentinel knows</h2>
+          <p>Sentinel answers from the ScamPatterns table: 12 recruiter-scam patterns students actually run into. Each pattern includes how the scam works, red flags, an example message, a risk level, and what to do next.</p>
+          <ul class="contrib-list">
+            <li>Payment scams: fake checks, equipment “reimbursement,” upfront fees, and visa or sponsorship fees</li>
+            <li>Impersonation: look-alike domains, personal email addresses, chat-only interviews, and fake staffing agencies</li>
+            <li>Identity theft and fake jobs: requests for your SSN or bank details, package reshipping, and high-pay data entry</li>
+          </ul>
+        </section>
+        <section class="card">
+          <h2>How to chat</h2>
+          <ol class="sentinel-steps">
+            <li>Click the chat bubble in the bottom-right corner of any JobLens page, or use Open chat.</li>
+            <li>Paste a recruiter message, or tap a sample question and paste it into the chat.</li>
+            <li>Read the risk level and the next step before you reply, pay, or share personal details.</li>
+          </ol>
+        </section>
+        <section class="card sentinel-samples">
+          <h2>Sample questions</h2>
+          <div class="chip-row sentinel-questions">
+            <button class="chip sentinel-chip" type="button" data-question="Is hr@amaz0n-careers.net a real Amazon recruiter?">Is hr@amaz0n-careers.net a real Amazon recruiter?</button>
+            <button class="chip sentinel-chip" type="button" data-question="They told me to buy a laptop and they would reimburse me. Is that a scam?">They told me to buy a laptop and they would reimburse me. Is that a scam?</button>
+            <button class="chip sentinel-chip" type="button" data-question="A recruiter wants my Social Security number before sending an offer. What should I do?">A recruiter wants my Social Security number before sending an offer. What should I do?</button>
+          </div>
+          <p class="sentinel-copy" hidden>Copied! Paste it into the chat.</p>
+        </section>
+      </div>
+      <aside class="card sentinel-card">
+        <h2>Chat with Sentinel</h2>
+        <p>Sentinel is available on every JobLens page — click the chat bubble in the bottom-right corner.</p>
+        <button class="btn btn-primary open-chat" type="button">Open chat</button>
+        <p class="alert alert-info chat-hint" hidden>Click the chat bubble in the bottom-right corner to start.</p>
+      </aside>
+    </div>
   </main>
   <footer id="site-footer" class="site-footer">
     <div class="container">
@@ -45,7 +84,7 @@
           <a href="bot.html">Ask Sentinel</a>
           <a href="aboutus.html">About Us</a>
         </nav>
-        <p class="footer-course">ISM 6225 · Application Development for Analytics · [Team Name] · <span id="year"></span></p>
+        <p class="footer-course">ISM 6225 · App Dev for Analytics · <span id="year"></span></p>
       </div>
       <p class="footer-disclaimer">Prototype for educational purposes. Scam data shown is sample data.</p>
     </div>

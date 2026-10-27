@@ -2,7 +2,7 @@
 
 A job and internship scam shield for students, built as a trust-and-safety tool for university career centers.
 
-**Team:** (add names)
+**Team:** Naga Pavan Sathvik Reddy Sirigiri, Isabella Cuello Penaloza, Lakshmi Reethika Guduri
 
 ## Pages
 
